@@ -1,5 +1,5 @@
 <?php
-    require 'db.php';
+    require 'conexion.php';
 
     $id = (int)($_POST['id'] ?? 0);
     $stmt = $cn->prepare('DELETE FROM incidencias WHERE id = ?');
