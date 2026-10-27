@@ -11,7 +11,7 @@
     top: 150px;
 }
 #lupa{
-    width: 20px;
+    width: 20px !important;
     height: auto;
 }
 #logo{
@@ -25,4 +25,16 @@
 }
 nav{
     background-color: grey;
+}
+#filtro{
+    width: 90px;
+}
+#searchbar{ 
+    width: 100% !important;
+    max-width: 500px !important;
+    height: 100%;
+    max-height: 40px !important;
+}
+#inicioSesion{
+    max-width: 80px !important;
 }
