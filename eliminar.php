@@ -5,4 +5,6 @@
     $stmt = $cn->prepare('DELETE FROM incidencias WHERE id = ?');
     $stmt->bind_param('i', $id);
     $stmt->execute();
+
+    header("Location: index.php");
 ?>

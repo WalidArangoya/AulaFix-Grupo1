@@ -27,14 +27,24 @@ $logueado = isset($_SESSION['usuario']);
 <body>
 
     <h1>Incidencias</h1>
+    <?php if ($logueado): ?>
+        <p>
+            <a href="nueva.php"> 
+                <button type="button">Nueva incidencia</button>
+            </a>
+        </p>
 
+    <?php endif; ?>
+    
     <table border="1" cellpadding="6">
+
         <tr>
             <th>Titulo</th>
             <th>Descripción</th>
-           
+
 
             <?php if ($logueado): ?>
+
                 <th>Editar</th>
                 <th>Eliminar</th>
             <?php endif; ?>
@@ -42,7 +52,9 @@ $logueado = isset($_SESSION['usuario']);
 
         <?php while ($r = $res->fetch_assoc()): ?>
             <tr>
-                <td><a href="detalle.php" id="<?= $r['id']?>"><?= htmlspecialchars($r['titulo'], ENT_QUOTES, 'UTF-8')?></a></td>
+                <td><a href="detalle.php"
+                        id="<?= $r['id'] ?>"><?= htmlspecialchars($r['titulo'], ENT_QUOTES, 'UTF-8') ?></a>
+                </td>
                 <td><?= htmlspecialchars($r['descripcion'], ENT_QUOTES, 'UTF-8') ?></td>
 
                 <?php if ($logueado): ?>
