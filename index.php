@@ -5,12 +5,10 @@ require 'conexion.php';
 $q = trim($_POST['q'] ?? '');
 $like = "%{$q}%";
 
-$stmt = $cn->prepare("
-    SELECT id, titulo, descripcion, aula, prioridad, estado 
+$stmt = $cn->prepare("SELECT id, titulo, descripcion, aula, prioridad, estado 
     FROM incidencias
     WHERE (?='' OR descripcion LIKE ?)
-    ORDER BY id ASC
-");
+    ORDER BY id ASC");
 
 $stmt->bind_param('ss', $q, $like);
 $stmt->execute();
