@@ -1,0 +1,31 @@
+#fieldText{
+    width: 300px;
+}
+#password{
+    width: 300px;
+}
+#form1{
+    padding: 30px;
+    position: relative;
+    left: 550px;
+    top: 150px;
+}
+#lupa{
+    width: 20px !important;
+    height: auto;
+}
+#logo{
+    position: relative;
+    left: 80px;
+}
+#login{
+    position: relative;
+    right: 40px;
+    color: white;
+}
+nav{
+    background-color: grey;
+}
+#filtro{
+    width: 90px;
+}
