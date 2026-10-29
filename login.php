@@ -36,6 +36,7 @@ if($_SERVER["REQUEST_METHOD"]=="GET"){
     <link rel="stylesheet" href="./css/estilos.css">
 </head>
 <body>
+
     <script src="js/loginScript.js">
     </script>
     <nav class="navbar navbar-dark">
@@ -49,7 +50,7 @@ if($_SERVER["REQUEST_METHOD"]=="GET"){
                     <button class="btn-solid theme-secondary" type="submit"><img src="img/lupa.png" id="lupa"></button>
                     <button class="form-control combobox-toggle" type="button"
                         data-bs-toggle="combobox"
-                        data-bs-name="country"
+                        data-bs-name="gravedad"
                         data-bs-placeholder="Gravedad"
                         id="filtro"
                         style="max-width: 140px">

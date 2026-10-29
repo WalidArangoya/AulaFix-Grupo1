@@ -25,7 +25,9 @@ $logueado = isset($_SESSION['usuario']);
 </head>
 
 <body>
-
+<?php
+ include ''
+?>
     <h1>Incidencias</h1>
     <?php if ($logueado): ?>
         <p>
@@ -41,6 +43,8 @@ $logueado = isset($_SESSION['usuario']);
         <tr>
             <th>Titulo</th>
             <th>Descripción</th>
+            <th>Prioridad</th>
+            <th>Aula</th>
 
 
             <?php if ($logueado): ?>
@@ -57,15 +61,17 @@ $logueado = isset($_SESSION['usuario']);
                 </td>
                 <td><?= htmlspecialchars($r['descripcion'], ENT_QUOTES, 'UTF-8') ?></td>
 
+                <td><?= htmlspecialchars($r['prioridad'], ENT_QUOTES, 'UTF-8') ?></td>
+
+                <td><?= htmlspecialchars($r['aula'], ENT_QUOTES, 'UTF-8') ?></td>
+
                 <?php if ($logueado): ?>
+
                     <td>
-                        editar.php?id=<?= $r['id'] ?>
                         <button type="button">Editar</button>
                         </a>
                     </td>
-                    <td>
-                        eliminar.php?id=<?= $r['id'] ?> onclick="return confirm('¿Seguro que quieres eliminar esta
-                        incidencia?');">
+                    <td><form>
                         <button type="button">Eliminar</button>
                         </a>
                     </td>
@@ -73,7 +79,5 @@ $logueado = isset($_SESSION['usuario']);
             </tr>
         <?php endwhile; ?>
     </table>
-
 </body>
-
 </html>
