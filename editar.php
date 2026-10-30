@@ -112,6 +112,7 @@
         <label>Título:</label>
         <input
             type="text"
+            id="titulo"
             name="titulo"
             value="<?= htmlspecialchars($incidencia['titulo']) ?>"
             required
@@ -122,6 +123,7 @@
         <label>Descripción:</label>
         <textarea
             name="descripcion"
+            id="descripcion"
             required
         ><?= htmlspecialchars($incidencia['descripcion']) ?></textarea>
 
@@ -184,8 +186,8 @@
 
     document.getElementById("formEditar").addEventListener("submit", function(event){
 
-    let titulo = document.querySelector('[name="titulo"]').value;
-    let descripcion = document.querySelector('[name="descripcion"]').value;
+        let titulo = document.getElementById("titulo").value.trim();
+        let descripcion = document.getElementById("descripcion").value.trim();
 
     //Validación de titulo
     if(titulo.length < 3){
