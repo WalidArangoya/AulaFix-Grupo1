@@ -23,7 +23,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     );
 
     if($stmt->execute()){
-        echo "Incidencia creada correctamente";
+    echo 
+        "<script>
+            alert('Incidencia creada correctamente');
+            window.location='index.php';
+        </script>"
+        ;
     } else {
         echo "Error al crear la incidencia";
     }
@@ -43,20 +48,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <body>
     <h1>Nueva incidencia</h1>
 
-    <form method="POST">
+    <form method="POST" id="formNueva">
 
     <label>Título:</label>
-    <input type="text" name="titulo" required>
+    <input type="text" name="titulo" id="titulo" required>
 
     <br><br>
 
     <label>Descripción:</label>
-    <textarea name="descripcion" required></textarea>
+    <textarea name="descripcion" id="descripcion" required></textarea>
 
     <br><br>
 
     <label>Aula:</label>
-    <input type="text" name="aula" required>
+    <input type="text" name="aula" id="aula" required>
 
     <br><br>
 
@@ -75,5 +80,37 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </button>
 
 </form>
+
+<script>
+document.getElementById("formNueva").addEventListener("submit", function(event){
+
+    let titulo = document.getElementById("titulo").value.trim();
+    let descripcion = document.getElementById("descripcion").value.trim();
+    let aula = document.getElementById("aula").value.trim();
+
+    // Validar longitud del título
+    if(titulo.length < 3){
+        alert("El título debe tener al menos 3 caracteres.");
+        event.preventDefault();
+        return;
+    }
+
+    // Validar longitud de la descripción
+    if(descripcion.length < 10){
+        alert("La descripción debe tener al menos 10 caracteres.");
+        event.preventDefault();
+        return;
+    }
+
+    // Validar que el aula empiece por numero y termine en letras (ej: 2DAW)
+    let patronAula = /^[0-9]+[A-Za-z]+$/;
+
+    if(!patronAula.test(aula)){
+        alert("El aula debe empezar por números y terminar por letras. Ejemplo: 1DAM o 2DAW.");
+        event.preventDefault();
+        return;
+    }
+});
+</script>
 </body>
 </html>

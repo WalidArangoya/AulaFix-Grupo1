@@ -36,7 +36,7 @@
             empty($prioridad) ||
             empty($estado)
         ) {
-            echo "Todos los campos son obligatorios";
+            die("Todos los campos son obligatorios");
         } else{
 
         $stmt = $cn-> prepare("
@@ -76,14 +76,18 @@
                 $stmtHistorial->bind_param(
                 "iss",
                 $id,
-                $estado_anterior,
+                $estadoAnterior,
                 $estado
                );
                
                $stmtHistorial->execute();     
             }
-            header("Location: index.php");
-            exit;
+            echo "
+            <script>
+                alert('Incidencia actualizada correctamente');
+                window.location='index.php';
+            </script>
+            ";
         } else {
             echo "Error al actualizar";
         }
@@ -103,7 +107,7 @@
 
     <h1>Editar incidencia</h1>
 
-    <form method="POST">
+    <form method="POST" id="formEditar">
 
         <label>Título:</label>
         <input
@@ -169,11 +173,50 @@
 
         <br><br>
 
-        <button type="submit">
+        <button id="btnGuardar" type="submit">
             Guardar cambios
         </button>
 
     </form>
+<script>
 
+
+
+    document.getElementById("formEditar").addEventListener("submit", function(event){
+
+    let titulo = document.querySelector('[name="titulo"]').value;
+    let descripcion = document.querySelector('[name="descripcion"]').value;
+
+    //Validación de titulo
+    if(titulo.length < 3){
+        alert("El título debe tener al menos 3 caracteres.");
+        event.preventDefault();
+        return;
+    }
+
+    //Validación de descripción
+    if(descripcion.length < 10){
+        alert("La descripción debe tener al menos 10 caracteres.");
+        event.preventDefault();
+        return;
+    }
+
+    //Validación de campos vacios
+    if(titulo.trim() === "" || descripcion.trim() === ""){
+        alert("No puedes dejar campos vacíos o solo con espacios.");
+        event.preventDefault();
+        return;
+    }
+
+    //Confirmar los cambios
+    if(!confirm("¿Seguro que deseas guardar los cambios?")){
+        event.preventDefault();
+        return;
+    }
+});
+
+    
+
+</script>
 </body>
 </html>
