@@ -1,7 +1,7 @@
 <?php
     require 'conexion.php';
 
-    $id = (int)($_POST['id'] ?? '0');
+    $id = (int)($_GET['id'] ?? '0');
     
     if($id == 0){
         die("ID no válido");
@@ -179,6 +179,6 @@
 
         </form>
     </main>
-    <?php require 'includes/header.php';?>
+    <?php require 'includes/footer.php';?>
 </body>
 </html>

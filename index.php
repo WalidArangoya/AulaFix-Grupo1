@@ -80,10 +80,6 @@
                             <?php if ($logueado): ?>
 
                                 <td class="text-center">
-                                    <form action="editar.php" method="POST">
-                                        <input type="hidden" name="id" value="<?= (int)$r['id']?>">
-                                        <button type="submit" class="btn btn-sm btn-outline-secondary">Editar</button>
-                                    </form>
                                     <a href="editar.php?id=<?= (int)$r['id'] ?>" class="btn btn-sm btn-outline-secondary">Editar</a>
                                 </td>
 
