@@ -6,6 +6,26 @@
     max-width: 180px;
     height: auto;
 }
+/*CSS de BOTONES index.php*/
+
+.btn-aulafix{
+    background-color: #ff9800;
+    border: none;
+    color: white;
+    font-weight: 600;
+}
+
+.btn-aulafix:hover{
+    background-color: #e68a00;
+    color: white;
+}
+
+.btn-aulafix:focus{
+    background-color: #e68a00;
+    color: white;
+    box-shadow: 0 0 0 .25rem rgba(255,152,0,.25);
+}
+
 
 /* Footer */
 footer {
@@ -23,7 +43,7 @@ footer a:hover {
 
 
 /* Formulario de inicio de sesion */
-main {
+mainLogin {
     display: flex;
     flex: 1;  
     justify-content: center;
@@ -42,4 +62,74 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+}
+
+
+/*CSS DE editar.php*/
+
+
+
+.card-aulafix{
+    border-top:5px solid #ff9800;
+    border-radius:18px;
+    box-shadow:0 10px 30px rgba(0,0,0,.1);
+}
+
+.btn-aulafix{
+    background:#ff9800;
+    border:none;
+    color:white;
+    font-weight:600;
+}
+
+.btn-aulafix:hover{
+    background:#e68a00;
+    color:white;
+}
+
+mainEditar{
+    min-height:70vh;
+}
+
+textarea{
+    resize:none;
+}
+
+/*CSS DE nueva.php*/
+
+.card-aulafix{
+    border-top:5px solid #ff9800;
+    border-radius:18px;
+    box-shadow:0 10px 30px rgba(0,0,0,.1);
+}
+
+.btn-aulafix{
+    background:#ff9800;
+    border:none;
+    color:white;
+    font-weight:600;
+}
+
+.btn-aulafix:hover{
+    background:#e68a00;
+    color:white;
+}
+
+.form-control:focus,
+.form-select:focus{
+    border-color:#ff9800;
+    box-shadow:0 0 0 .25rem rgba(255,152,0,.25);
+}
+
+.editarTitulo{
+    font-weight:700;
+    color:#212529;
+}
+
+.editarWrapper{
+    min-height:70vh;
+}
+
+textarea{
+    resize:none;
 }

@@ -45,42 +45,133 @@
 </head>
 <body>
     <?php require 'includes/header.php'?>
-    <main>
-        <h1>Nueva incidencia</h1>
+  <main class="editarWrapper container py-5">
 
-        <form method="POST">
-            <label>Título:</label>
-            <input type="text" name="titulo" required>
-            <br><br>
+    <div class="row justify-content-center">
 
-            <label>Descripción:</label>
-            <textarea name="descripcion" required></textarea>
-            <br><br>
+        <div class="col-lg-8">
 
-            <label>Aula:</label>
-            <input type="text" name="aula" required>
-            <br><br>
+            <div class="card card-aulafix">
 
-            <label>Prioridad:</label>
+                <div class="card-body p-5">
 
-            <select name="prioridad">
-                <option value="Baja">Baja</option>
-                <option value="Media">Media</option>
-                <option value="Alta">Alta</option>
-            </select>
+                    <h1 class="display-4 fw-bold text-center mb-5">
+                        Nueva incidencia
+                    </h1>
 
-            <br><br>
+                    <form method="POST">
 
-            <button type="submit">
-                Guardar incidencia
-            </button>
+                        <div class="mb-4">
 
-            <?php if ($exito === true): ?>
-                <div class="alert alert-success mt-3">Incidencia creada correctamente</div>
-            <?php endif;?>
+                            <label class="form-label fw-semibold">
+                                Título
+                            </label>
 
-        </form>
-    </main>
+                            <input
+                                type="text"
+                                name="titulo"
+                                class="form-control form-control-lg"
+                                required
+                            >
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Descripción
+                            </label>
+
+                            <textarea
+                                name="descripcion"
+                                class="form-control"
+                                rows="5"
+                                required
+                            ></textarea>
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Aula
+                            </label>
+
+                            <input
+                                type="text"
+                                name="aula"
+                                class="form-control"
+                                required
+                            >
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-semibold">
+                                Prioridad
+                            </label>
+
+                            <select
+                                name="prioridad"
+                                class="form-select"
+                            >
+
+                                <option value="Baja">
+                                    Baja
+                                </option>
+
+                                <option value="Media">
+                                    Media
+                                </option>
+
+                                <option value="Alta">
+                                    Alta
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                        <?php if ($exito === true): ?>
+
+                            <div class="alert alert-success">
+
+                                Incidencia creada correctamente
+
+                            </div>
+
+                        <?php endif; ?>
+
+                        <div class="d-flex justify-content-between mt-4">
+
+                            <a
+                                href="index.php"
+                                class="btn btn-outline-dark btn-lg"
+                            >
+                                Cancelar
+                            </a>
+
+                            <button
+                                type="submit"
+                                class="btn btn-aulafix btn-lg px-4"
+                            >
+                                Guardar incidencia
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
     <?php require 'includes/footer.php'?>
 </body>
 </html>

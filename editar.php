@@ -104,81 +104,146 @@
 </head>
 <body>
     <?php require 'includes/header.php';?>
-    <main>
-        <h1>Editar incidencia</h1>
+<main class="container py-5" id="mainEditar">
 
-        <form method="POST">
+    <div class="row justify-content-center">
 
-            <label>Título:</label>
-            <input
-                type="text"
-                name="titulo"
-                value="<?= htmlspecialchars($incidencia['titulo']) ?>"
-                required
-            >
+        <div class="col-12 col-md-10 col-lg-8">
 
-            <br><br>
+            <div class="card card-aulafix">
 
-            <label>Descripción:</label>
-            <textarea
-                name="descripcion"
-                required
-            ><?= htmlspecialchars($incidencia['descripcion']) ?></textarea>
+                <div class="card-body p-5">
 
-            <br><br>
+                    <h1 class="display-4 fw-bold text-center mb-5">
+                        Editar incidencia
+                    </h1>
 
-            <label>Prioridad:</label>
+                    <form method="POST">
 
-            <select name="prioridad">
+                        <div class="mb-4">
 
-                <option value="Baja"
-                    <?= $incidencia['prioridad'] == 'Baja' ? 'selected' : '' ?>>
-                    Baja
-                </option>
+                            <label class="form-label fw-semibold">
+                                Título
+                            </label>
 
-                <option value="Media"
-                    <?= $incidencia['prioridad'] == 'Media' ? 'selected' : '' ?>>
-                    Media
-                </option>
+                            <input
+                                type="text"
+                                name="titulo"
+                                class="form-control form-control-lg"
+                                value="<?= htmlspecialchars($incidencia['titulo']) ?>"
+                                required
+                            >
 
-                <option value="Alta"
-                    <?= $incidencia['prioridad'] == 'Alta' ? 'selected' : '' ?>>
-                    Alta
-                </option>
+                        </div>
 
-            </select>
+                        <div class="mb-4">
 
-            <br><br>
+                            <label class="form-label fw-semibold">
+                                Descripción
+                            </label>
 
-            <label>Estado:</label>
+                            <textarea
+                                name="descripcion"
+                                class="form-control"
+                                rows="5"
+                                required
+                            ><?= htmlspecialchars($incidencia['descripcion']) ?></textarea>
 
-            <select name="estado">
+                        </div>
 
-                <option value="Pendiente"
-                    <?= $incidencia['estado'] == 'Pendiente' ? 'selected' : '' ?>>
-                    Pendiente
-                </option>
+                        <div class="row">
 
-                <option value="En proceso"
-                    <?= $incidencia['estado'] == 'En proceso' ? 'selected' : '' ?>>
-                    En proceso
-                </option>
+                            <div class="col-md-6 mb-4">
 
-                <option value="Resuelta"
-                    <?= $incidencia['estado'] == 'Resuelta' ? 'selected' : '' ?>>
-                    Resuelta
-                </option>
+                                <label class="form-label fw-semibold">
+                                    Prioridad
+                                </label>
 
-            </select>
+                                <select
+                                    name="prioridad"
+                                    class="form-select"
+                                >
 
-            <br><br>
+                                    <option value="Baja"
+                                    <?= $incidencia['prioridad'] == 'Baja' ? 'selected' : '' ?>>
+                                        Baja
+                                    </option>
 
-            <button type="submit">
-                Guardar cambios
-            </button>
+                                    <option value="Media"
+                                    <?= $incidencia['prioridad'] == 'Media' ? 'selected' : '' ?>>
+                                        Media
+                                    </option>
 
-        </form>
-    </main>
+                                    <option value="Alta"
+                                    <?= $incidencia['prioridad'] == 'Alta' ? 'selected' : '' ?>>
+                                        Alta
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-6 mb-4">
+
+                                <label class="form-label fw-semibold">
+                                    Estado
+                                </label>
+
+                                <select
+                                    name="estado"
+                                    class="form-select"
+                                >
+
+                                    <option value="Pendiente"
+                                    <?= $incidencia['estado'] == 'Pendiente' ? 'selected' : '' ?>>
+                                        Pendiente
+                                    </option>
+
+                                    <option value="En proceso"
+                                    <?= $incidencia['estado'] == 'En proceso' ? 'selected' : '' ?>>
+                                        En proceso
+                                    </option>
+
+                                    <option value="Resuelta"
+                                    <?= $incidencia['estado'] == 'Resuelta' ? 'selected' : '' ?>>
+                                        Resuelta
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-4">
+
+                            <a
+                                href="index.php"
+                                class="btn btn-outline-dark btn-lg"
+                            >
+                                Cancelar
+                            </a>
+
+                            <button
+                                type="submit"
+                                class="btn btn-aulafix btn-lg px-4"
+                            >
+                                Guardar cambios
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
     <?php require 'includes/footer.php';?>
 </body>
 </html>

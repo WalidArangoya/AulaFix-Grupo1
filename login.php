@@ -37,7 +37,7 @@
 <body>
     <?php require 'includes/header.php';?>
 
-    <main>
+    <main id="mainLogin">
         <form method="POST" class="formInicioSesion">
             <div class="form-group">
                 <div class="form-field">

@@ -42,7 +42,7 @@
                 <h1 class="mb-0">Incidencias</h1>
 
                 <?php if ($logueado): ?>
-                    <a class="btn btn-primary" href="nueva.php">
+                    <a class="btn btn-aulafix" href="nueva.php">
                         <i class="bi bi-plus-lg me-1"></i>Nueva incidencia
                     </a>
                 <?php endif; ?>
@@ -73,21 +73,21 @@
                             <td>
                                 <form action="detalle.php" method="POST">
                                     <input type="hidden" name="id" value="<?= (int)$r['id']?>">
-                                    <button type="submit" class="btn btn-sm btn-outline-primary">Ver detalle</button>
+                                    <button type="submit" class="btn btn-sm btn-aulafix">Ver detalle</button>
                                 </form>
                             </td>
 
                             <?php if ($logueado): ?>
 
                                 <td class="text-center">
-                                    <a href="editar.php?id=<?= (int)$r['id'] ?>" class="btn btn-sm btn-outline-secondary">Editar</a>
+                                    <a href="editar.php?id=<?= (int)$r['id'] ?>" class="btn btn-sm btn-aulafix">Editar</a>
                                 </td>
 
                                 </td>
                                 <td class="text-center">
                                     <form action="eliminar.php" method="POST">
                                         <input type="hidden" name="id" value="<?= (int)$r['id']?>">
-                                        <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
+                                        <button type="submit" class="btn btn-sm btn-aulafix">Eliminar</button>
                                     </form>
                                 </td>
                             <?php endif; ?>
