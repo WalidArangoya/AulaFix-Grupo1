@@ -76,7 +76,7 @@
                 $stmtHistorial->bind_param(
                 "iss",
                 $id,
-                $estado_anterior,
+                $estadoAnterior,
                 $estado
                );
                

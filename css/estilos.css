@@ -133,3 +133,11 @@ textarea{
 textarea{
     resize:none;
 }
+
+/*Detalle*/
+.tabla {
+    display: flex;
+    flex: 1;  
+    justify-content: center;
+    align-items: center;
+}
