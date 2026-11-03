@@ -32,7 +32,7 @@ CREATE TABLE `historial_estados` (
   PRIMARY KEY (`id`),
   KEY `incidencia_id` (`incidencia_id`),
   KEY `usuario_id` (`usuario_id`),
-  CONSTRAINT `historial_estados_ibfk_1` FOREIGN KEY (`incidencia_id`) REFERENCES `incidencias` (`id`),
+  CONSTRAINT `historial_estados_ibfk_1` FOREIGN KEY (`incidencia_id`) REFERENCES `incidencias` (`id`) on delete cascade,
   CONSTRAINT `historial_estados_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

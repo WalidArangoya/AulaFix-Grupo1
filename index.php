@@ -51,45 +51,47 @@
             <div class="table-responsive">
                 <table class="table table-striped table-hover align-middle">
                     <thead class="table-dark">
-                    <tr>
-                        <th>Titulo</th>
-                        <th>Descripción</th>
-                        <th>Aula</th>
-                        <th>Prioridad</th>
-                        <th>Ver detalle</th>
-
-                        <?php if ($logueado): ?>
-                            <th class="text-center">Editar</th>
-                            <th class="text-center">Eliminar</th>
-                        <?php endif; ?>
-                    </tr>
-
-                    <?php while ($r = $res->fetch_assoc()): ?>
                         <tr>
-                            <td id=<?= (int)$r['id'] ?>"><?= htmlspecialchars($r['titulo'], ENT_QUOTES, 'UTF-8') ?></td>
-                            <td><?= htmlspecialchars(mb_strimwidth($r['descripcion'], 0, 100, '...'), ENT_QUOTES, 'UTF-8') ?></td>
-                            <td><?= htmlspecialchars($r['aula'], ENT_QUOTES, 'UTF-8') ?></td>
-                            <td><?= htmlspecialchars($r['prioridad'], ENT_QUOTES, 'UTF-8') ?></td>
-                            <td>
-                                <a href="detalle.php?id=<?= (int)$r['id'] ?>" class="btn btn-sm btn-aulafix">Ver detalles</a>
-                            </td>
+                            <th>Titulo</th>
+                            <th>Descripción</th>
+                            <th>Aula</th>
+                            <th>Prioridad</th>
+                            <th>Ver detalle</th>
 
                             <?php if ($logueado): ?>
-
-                                <td class="text-center">
-                                    <a href="editar.php?id=<?= (int)$r['id'] ?>" class="btn btn-sm btn-aulafix">Editar</a>
-                                </td>
-
-                                </td>
-                                <td class="text-center">
-                                    <form action="eliminar.php" method="POST">
-                                        <input type="hidden" name="id" value="<?= (int)$r['id']?>">
-                                        <button type="submit" class="btn btn-sm btn-aulafix">Eliminar</button>
-                                    </form>
-                                </td>
+                                <th class="text-center">Editar</th>
+                                <th class="text-center">Eliminar</th>
                             <?php endif; ?>
                         </tr>
-                    <?php endwhile; ?>
+                    </thead>
+                    <tbody>
+                        <?php while ($r = $res->fetch_assoc()): ?>
+                            <tr>
+                                <td id=<?= (int)$r['id'] ?>"><?= htmlspecialchars($r['titulo'], ENT_QUOTES, 'UTF-8') ?></td>
+                                <td><?= htmlspecialchars(mb_strimwidth($r['descripcion'], 0, 100, '...'), ENT_QUOTES, 'UTF-8') ?></td>
+                                <td><?= htmlspecialchars($r['aula'], ENT_QUOTES, 'UTF-8') ?></td>
+                                <td><?= htmlspecialchars($r['prioridad'], ENT_QUOTES, 'UTF-8') ?></td>
+                                <td>
+                                    <a href="detalle.php?id=<?= (int)$r['id'] ?>" class="btn btn-sm btn-aulafix">Ver detalles</a>
+                                </td>
+
+                                <?php if ($logueado): ?>
+
+                                    <td class="text-center">
+                                        <a href="editar.php?id=<?= (int)$r['id'] ?>" class="btn btn-sm btn-aulafix">Editar</a>
+                                    </td>
+
+                                    </td>
+                                    <td class="text-center">
+                                        <form action="eliminar.php" method="POST">
+                                            <input type="hidden" name="id" value="<?= (int)$r['id']?>">
+                                            <button type="submit" class="btn btn-sm btn-aulafix">Eliminar</button>
+                                        </form>
+                                    </td>
+                                <?php endif; ?>
+                            </tr>
+                        <?php endwhile; ?>
+                    </tbody>
                 </table>
             </div>
         </div>

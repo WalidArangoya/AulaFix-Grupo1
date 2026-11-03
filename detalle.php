@@ -46,44 +46,60 @@
 <body>
     <?php require 'includes/header.php';?>
     <div class="container my-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="mb-0">Detalle de la incidencia</h1>
+            <a href="index.php" class="btn btn-aulafix">
+                <i class="bi bi-arrow-left me-1"></i>Volver
+            </a>
+        </div>
+
         <div class="table-responsive tabla">
-            <table class="table table-striped table-hover align-middle">
-                <thead class="table-dark">
-                <tr>
-                    <th>Titulo</th>
-                    <th>Descripción</th>
-                    <th>Aula</th>
-                    <th>Prioridad</th>
-                    <th>Estado</th>
-                    <th>Fecha Creación</th>
-                </tr>
-                <tr>
-                    <td><?= htmlspecialchars($incidencia['titulo'], ENT_QUOTES, 'UTF-8') ?></td>
-                    <td><?= htmlspecialchars($incidencia['descripcion'], ENT_QUOTES, 'UTF-8') ?></td>
-                    <td><?= htmlspecialchars($incidencia['aula'], ENT_QUOTES, 'UTF-8') ?></td>
-                    <td><?= htmlspecialchars($incidencia['prioridad'], ENT_QUOTES, 'UTF-8') ?></td>
-                    <td><?= htmlspecialchars($incidencia['estado'], ENT_QUOTES, 'UTF-8') ?></td>
-                    <td><?= htmlspecialchars($incidencia['fecha_creacion'], ENT_QUOTES, 'UTF-8') ?></td>
-                </tr>
+            <table class="table table-striped table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Titulo</th>
+                        <th>Descripción</th>
+                        <th>Aula</th>
+                        <th>Prioridad</th>
+                        <th>Estado</th>
+                        <th>Fecha Creación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><?= htmlspecialchars($incidencia['titulo'], ENT_QUOTES, 'UTF-8') ?></td>
+                        <td><?= htmlspecialchars($incidencia['descripcion'], ENT_QUOTES, 'UTF-8') ?></td>
+                        <td><?= htmlspecialchars($incidencia['aula'], ENT_QUOTES, 'UTF-8') ?></td>
+                        <td><?= htmlspecialchars($incidencia['prioridad'], ENT_QUOTES, 'UTF-8') ?></td>
+                        <td><?= htmlspecialchars($incidencia['estado'], ENT_QUOTES, 'UTF-8') ?></td>
+                        <td><?= htmlspecialchars($incidencia['fecha_creacion'], ENT_QUOTES, 'UTF-8') ?></td>
+                    </tr>
+                </tbody>
             </table>
             <br><br>
         </div>
+
+
+        <h2 class="h4 titulo-seccion mt-5 mb-3">Historial de estados</h2>
             
         <div class="table-responsive tabla">
-            <table class="table table-striped table-hover align-middle">
-                <thead class="table-dark">
+            <table class="table table-striped table-hover align-middle mb-0">
+                <thead>
                 <tr>
                     <th>Estado Anterior</th>
                     <th>Estado Actual</th>
-                    <th>Fecha_cambio</th>
+                    <th>Fecha de Cambio</th>
                 </tr>
-                <?php while ($r2 = $resultadoHistorial->fetch_assoc()): ?>
-                <tr>
-                    <td><?= htmlspecialchars($r2['estado_anterior'], ENT_QUOTES, 'UTF-8') ?></td>
-                    <td><?= htmlspecialchars($r2['estado_nuevo'], ENT_QUOTES, 'UTF-8') ?></td>
-                    <td><?= htmlspecialchars($r2['fecha_cambio'], ENT_QUOTES, 'UTF-8') ?></td>
-                </tr>
-                <?php endwhile; ?>
+                </thead>
+                <tbody>
+                    <?php while ($r2 = $resultadoHistorial->fetch_assoc()): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($r2['estado_anterior'], ENT_QUOTES, 'UTF-8') ?></td>
+                        <td><?= htmlspecialchars($r2['estado_nuevo'], ENT_QUOTES, 'UTF-8') ?></td>
+                        <td><?= htmlspecialchars($r2['fecha_cambio'], ENT_QUOTES, 'UTF-8') ?></td>
+                    </tr>
+                    <?php endwhile; ?>
+                </tbody>
             </table>
         </div>
     </div>

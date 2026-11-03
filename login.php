@@ -39,20 +39,22 @@
 
     <main id="mainLogin">
         <form method="POST" class="formInicioSesion">
+            <h1 class="h3 editarTitulo text-center mb-4">Iniciar sesión</h1>
+
             <div class="form-group">
-                <div class="form-field">
-                    <label for="usuario" class="form-label">Nombre de Usuario</label>
-                    <input type="text" class="form-control" name="user" placeholder="Enter Username">
+                <div class="form-field mb-3">
+                    <label for="usuario" class="form-label fw-semibold">Nombre de Usuario</label>
+                    <input type="text" class="form-control" id="usuario" name="user" placeholder="Enter Username">
                     <div class="form-text"></div>
                 </div>
 
-                <div class="form-field">
-                    <label for="contrasena" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" name="pass" placeholder="Enter password">
+                <div class="form-field mb-4">
+                    <label for="contrasena" class="form-label fw-semibold">Contraseña</label>
+                    <input type="password" class="form-control" id="contrasena" name="pass" placeholder="Enter password">
                 </div>
 
                 <br>
-                <button type="submit" class="btn btn-primary" id="iniciarSesion">Iniciar Sesion</button>
+                <button type="submit" class="btn btn-aulafix w-100" id="iniciarSesion">Iniciar Sesion</button>
 
                 <?php if ($error): ?>
                     <div class="alert alert-danger mt-3"><?= htmlspecialchars($error) ?></div>
