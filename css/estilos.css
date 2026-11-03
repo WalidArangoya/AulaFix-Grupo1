@@ -43,7 +43,7 @@ footer a:hover {
 
 
 /* Formulario de inicio de sesion */
-mainLogin {
+#mainLogin {
     display: flex;
     flex: 1;  
     justify-content: center;

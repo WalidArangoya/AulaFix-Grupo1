@@ -70,7 +70,7 @@
                             <td><?= htmlspecialchars(mb_strimwidth($r['descripcion'], 0, 100, '...'), ENT_QUOTES, 'UTF-8') ?></td>
                             <td><?= htmlspecialchars($r['aula'], ENT_QUOTES, 'UTF-8') ?></td>
                             <td><?= htmlspecialchars($r['prioridad'], ENT_QUOTES, 'UTF-8') ?></td>
-                            <td class="text-center">
+                            <td>
                                 <a href="detalle.php?id=<?= (int)$r['id'] ?>" class="btn btn-sm btn-aulafix">Ver detalles</a>
                             </td>
 
