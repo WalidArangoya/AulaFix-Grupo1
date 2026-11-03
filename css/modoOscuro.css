@@ -1,0 +1,265 @@
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #121826;
+    color: #E8ECF8;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    width: 100%;
+    background-color: #1B2333;
+    padding: 20px 40px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    width: 100px;
+}
+
+.logo img{
+    height: 70px;
+}
+
+.logo h1{
+    color: #E8ECF8;
+    font-size: 1.5rem;
+}
+
+/* =========================
+   BÚSQUEDA Y FILTROS
+========================= */
+
+.barra-superior{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+input,
+select{
+    background-color: #232D42;
+    color: #E8ECF8;
+
+    border: 1px solid #384357;
+    border-radius: 20px;
+
+    padding: 10px 15px;
+}
+
+input::placeholder{
+    color: #AAB2C5;
+}
+
+input:focus,
+select:focus{
+    outline: none;
+    border-color: #4F7CFF;
+}
+
+.btn-buscar{
+    background-color: #4F7CFF;
+    color: white;
+
+    border: none;
+    padding: 10px 20px;
+
+    border-radius: 20px;
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.btn-buscar:hover{
+    background-color: #628dff;
+}
+
+/* =========================
+   USUARIO
+========================= */
+
+.usuario{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #E8ECF8;
+}
+
+.usuario img{
+    width: 50px;
+    height: 50px;
+
+    border-radius: 50%;
+    padding: 5px;
+
+    background-color: #232D42;
+}
+
+/* =========================
+   CONTENIDO
+========================= */
+
+main{
+    width: 80%;
+    margin: 50px auto;
+}
+
+h2{
+    color: #E8ECF8;
+    margin-bottom: 25px;
+    font-size: 2rem;
+}
+
+/* =========================
+   TABLA DE INCIDENCIAS
+========================= */
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+
+    background-color: #232D42;
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+thead{
+    background-color: #FFB347;
+}
+
+thead th{
+    color: #121826;
+    padding: 15px;
+    text-align: left;
+}
+
+tbody tr{
+    border-bottom: 1px solid #384357;
+}
+
+tbody tr:hover{
+    background-color: #2D3953;
+}
+
+tbody td{
+    padding: 15px;
+    color: #E8ECF8;
+}
+
+/* =========================
+   BOTONES TABLA
+========================= */
+
+.btn-editar{
+    background-color: #4F7CFF;
+    color: white;
+
+    border: none;
+    border-radius: 20px;
+
+    padding: 8px 15px;
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.btn-editar:hover{
+    background-color: #628dff;
+}
+
+.btn-eliminar{
+    background-color: #FF6B6B;
+    color: white;
+
+    border: none;
+    border-radius: 20px;
+
+    padding: 8px 15px;
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.btn-eliminar:hover{
+    background-color: #ff8080;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.logoFooter {
+    max-width: 180px;
+    height: auto;
+}
+footer{
+    background-color: #1B2333;
+    margin-top: 100px;
+    padding: 50px;
+
+    color: #AAB2C5;
+}
+.logoFooter {
+    max-width: 180px;
+    height: auto;
+}
+.footer-contenedor{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+footer h3{
+    color: #E8ECF8;
+    margin-bottom: 15px;
+}
+
+footer a{
+    color: #FFB347;
+    text-decoration: none;
+}
+
+footer a:hover{
+    text-decoration: underline;
+}
+
+.copy{
+    text-align: center;
+    margin-top: 30px;
+    color: #7E8BA3;
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar{
+    width: 10px;
+}
+
+::-webkit-scrollbar-track{
+    background: #1B2333;
+}
+
+::-webkit-scrollbar-thumb{
+    background: #4F7CFF;
+    border-radius: 20px;
+}

@@ -1,28 +1,154 @@
-#fieldText{
-    width: 300px;
+/* =========================================================
+   AulaFix · estilos.css  (modo claro)
+   Una sola definición por componente, sin duplicados.
+   ========================================================= */
+
+/* ---------- 1. Variables del tema claro ---------- */
+:root,
+[data-bs-theme="light"] {
+    --af-primary: #ff9800;
+    --af-primary-hover: #e68a00;
+    --af-primary-rgb: 255, 152, 0;
+
+    --af-bg: #ffffff;
+    --af-surface: #ffffff;
+    --af-footer-bg: #f8f9fa;
+    --af-text: #212529;
+    --af-muted: #6c757d;
+    --af-border: #dee2e6;
+
+    --af-table-bg: #212529;
+    --af-table-striped: #2b3035;
+    --af-table-hover: #343a40;
+    --af-table-text: #ffffff;
+
+    --af-radius: 18px;
+    --af-shadow: 0 10px 30px rgba(0, 0, 0, .1);
 }
-#password{
-    width: 300px;
+
+/* ---------- 2. Base ---------- */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--af-bg);
+    color: var(--af-text);
 }
-#form1{
-    padding: 30px;
-    position: relative;
-    left: 550px;
-    top: 150px;
+
+main {
+    flex: 1;
 }
-#lupa{
-    width: 20px;
+
+textarea {
+    resize: none;
+}
+
+/* ---------- 3. Logos ---------- */
+.logo {
+    width: 100px;
+}
+
+.logoFooter {
+    max-width: 180px;
     height: auto;
 }
-#logo{
-    position: relative;
-    left: 40px;
+
+/* ---------- 4. Botón principal ---------- */
+.btn-aulafix {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--af-primary);
+    --bs-btn-border-color: var(--af-primary);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--af-primary-hover);
+    --bs-btn-hover-border-color: var(--af-primary-hover);
+    --bs-btn-focus-shadow-rgb: var(--af-primary-rgb);
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--af-primary-hover);
+    --bs-btn-active-border-color: var(--af-primary-hover);
+    font-weight: 600;
 }
-#login{
-    position: relative;
-    right: 40px;
-    color: white;
+
+/* Botón secundario (Cancelar) dentro de las tarjetas */
+.card-aulafix .btn-outline-dark {
+    --bs-btn-color: var(--af-text);
+    --bs-btn-border-color: var(--af-border);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--af-table-bg);
+    --bs-btn-hover-border-color: var(--af-table-bg);
+    font-weight: 600;
 }
-nav{
-    background-color: grey;
+
+/* ---------- 5. Tablas (index y detalle) ---------- */
+.table {
+    --bs-table-bg: var(--af-table-bg);
+    --bs-table-color: var(--af-table-text);
+    --bs-table-striped-bg: var(--af-table-striped);
+    --bs-table-striped-color: var(--af-table-text);
+    --bs-table-hover-bg: var(--af-table-hover);
+    --bs-table-hover-color: var(--af-table-text);
+    --bs-table-border-color: rgba(255, 255, 255, .1);
+}
+
+.tabla {
+    border-radius: 10px;
+}
+
+.titulo-seccion {
+    font-weight: 700;
+    color: var(--af-text);
+}
+
+/* ---------- 6. Tarjetas y formularios ---------- */
+.card-aulafix,
+.formInicioSesion {
+    background-color: var(--af-surface);
+    border: 1px solid var(--af-border);
+    border-top: 5px solid var(--af-primary);
+    border-radius: var(--af-radius);
+    box-shadow: var(--af-shadow);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--af-primary);
+    box-shadow: 0 0 0 .25rem rgba(var(--af-primary-rgb), .25);
+}
+
+.editarTitulo {
+    font-weight: 700;
+    color: var(--af-text);
+}
+
+.editarWrapper,
+#mainEditar {
+    min-height: 70vh;
+}
+
+/* ---------- 7. Login ---------- */
+#mainLogin {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+}
+
+.formInicioSesion {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+}
+
+/* ---------- 8. Footer ---------- */
+footer {
+    background: var(--af-footer-bg);
+}
+
+footer h2 {
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+}
+
+footer a:hover {
+    color: var(--af-primary-hover) !important;
 }

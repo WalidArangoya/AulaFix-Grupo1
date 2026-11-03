@@ -1,51 +1,68 @@
 <?php
+    require 'conexion.php';
+    session_start();
 
+    $error = "";
 
+    if($_SERVER["REQUEST_METHOD"]=="POST" && isset($_POST["user"]) && isset($_POST["pass"])){
+        $usuario=trim($_POST["user"]);
+    
+        $stmt = $cn->prepare("SELECT password FROM usuarios WHERE usuario = ?");
+        $stmt->bind_param('s', $usuario);
+        $stmt->execute();
+        $res = $stmt->get_result();
+
+        if ($r = $res->fetch_assoc()) {
+            if($_POST["pass"] == $r['password']){
+                session_start();
+                $_SESSION["usuario"] = $usuario;
+                header("Location: index.php");
+                exit();
+            }
+        }
+        $error = "Usuario o contraseña incorrectos";
+    }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
-    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./css/estilos.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    <title>Login</title>
 </head>
 <body>
-    <nav class="navbar navbar-dark bg-">
-        <div class="container-fluid d-flex justify-content-between align-items-center">
-            <div class="nav-item" id="logo">
-                <a class="navbar-brand active"  href="index.php">LOGO</a>
-            </div>
-            <div class="nav-item flex-grow-1 mx-3" style="max-width: 500px;">
-                <form class="hstack gap-2">
-                    <input class="form-control" placeholder="Search"/>
-                    <button class="btn-solid theme-secondary" type="submit"><img src="img/lupa.png" id="lupa"></button>
-                    <button class="form-control combobox-toggle" data-bs-placeholder="Gravedad"></button>
-                </form>
-            </div>
-        
-            <div class="nav-item" id="login">
-                <a class="nav-link active" href="login.php">Iniciar Sesion</a>
-            </div>
-        </div>
-    </nav>
+    <?php require 'includes/header.php';?>
 
-    <form action="" method="GET" id="form1">
-        <div class="form-group">
-            <div class="form-field">
-                <label for="fieldText" class="form-label">Nombre de Usuario</label>
-                <input type="text" class="form-control" id="fieldText" placeholder="Enter Username">
-                <div class="form-text">
+    <main id="mainLogin">
+        <form method="POST" class="formInicioSesion">
+            <h1 class="h3 editarTitulo text-center mb-4">Iniciar sesión</h1>
+
+            <div class="form-group">
+                <div class="form-field mb-3">
+                    <label for="usuario" class="form-label fw-semibold">Nombre de Usuario</label>
+                    <input type="text" class="form-control" id="usuario" name="user" placeholder="Enter Username">
+                    <div class="form-text"></div>
                 </div>
-            </div>
 
-            <div class="form-field">
-                <label for="password2" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter password">
+                <div class="form-field mb-4">
+                    <label for="contrasena" class="form-label fw-semibold">Contraseña</label>
+                    <input type="password" class="form-control" id="contrasena" name="pass" placeholder="Enter password">
+                </div>
+
+                <br>
+                <button type="submit" class="btn btn-aulafix w-100" id="iniciarSesion">Iniciar Sesion</button>
+
+                <?php if ($error): ?>
+                    <div class="alert alert-danger mt-3"><?= htmlspecialchars($error) ?></div>
+                <?php endif; ?>
+
             </div>
-        </div>
-    </form>
+        </form>
+    </main>
+    <?php require 'includes/footer.php';?>
 </body>
 </html>
