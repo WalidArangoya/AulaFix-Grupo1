@@ -2,7 +2,6 @@
     session_start();
     require 'conexion.php';
 
-
     $q = trim($_POST['q'] ?? '');
     $like = "%{$q}%";
     $prioridad = trim($_POST['prioridad'] ?? '');
@@ -21,7 +20,6 @@
     $res = $stmt->get_result();
 
     $logueado = isset($_SESSION['usuario']);
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -33,7 +31,6 @@
     <link rel="stylesheet" href="css/estilos.css">
     <title>AulaFix - Grupo 1</title>
 </head>
-
 <body>
     <?php require 'includes/header.php';?>
     <main>
@@ -51,49 +48,65 @@
             <div class="table-responsive">
                 <table class="table table-striped table-hover align-middle">
                     <thead class="table-dark">
-                    <tr>
-                        <th>Titulo</th>
-                        <th>Descripción</th>
-                        <th>Aula</th>
-                        <th>Prioridad</th>
-                        <th>Ver detalle</th>
-
-                        <?php if ($logueado): ?>
-                            <th class="text-center">Editar</th>
-                            <th class="text-center">Eliminar</th>
-                        <?php endif; ?>
-                    </tr>
-
-                    <?php while ($r = $res->fetch_assoc()): ?>
                         <tr>
-                            <td id=<?= (int)$r['id'] ?>"><?= htmlspecialchars($r['titulo'], ENT_QUOTES, 'UTF-8') ?></td>
-                            <td><?= htmlspecialchars(mb_strimwidth($r['descripcion'], 0, 100, '...'), ENT_QUOTES, 'UTF-8') ?></td>
-                            <td><?= htmlspecialchars($r['aula'], ENT_QUOTES, 'UTF-8') ?></td>
-                            <td><?= htmlspecialchars($r['prioridad'], ENT_QUOTES, 'UTF-8') ?></td>
-                            <td class="text-center">
-                                <a href="detalle.php?id=<?= (int)$r['id'] ?>" class="btn btn-sm btn-aulafix">Ver detalles</a>
-                            </td>
+                            <th>Titulo</th>
+                            <th>Descripción</th>
+                            <th>Aula</th>
+                            <th>Prioridad</th>
+                            <th>Ver detalle</th>
 
                             <?php if ($logueado): ?>
-
-                                <td class="text-center">
-                                    <a href="editar.php?id=<?= (int)$r['id'] ?>" class="btn btn-sm btn-aulafix">Editar</a>
-                                </td>
-
-                                </td>
-                                <td class="text-center">
-                                    <form action="eliminar.php" method="POST">
-                                        <input type="hidden" name="id" value="<?= (int)$r['id']?>">
-                                        <button type="submit" class="btn btn-sm btn-aulafix">Eliminar</button>
-                                    </form>
-                                </td>
+                                <th class="text-center">Editar</th>
+                                <th class="text-center">Eliminar</th>
                             <?php endif; ?>
                         </tr>
-                    <?php endwhile; ?>
+                    </thead>
+                    <tbody>
+                        <?php while ($r = $res->fetch_assoc()): ?>
+                            <tr>
+                                <td id="incidencia-<?= (int)$r['id'] ?>"><?= htmlspecialchars($r['titulo'], ENT_QUOTES, 'UTF-8') ?></td>
+                                <td><?= htmlspecialchars(mb_strimwidth($r['descripcion'], 0, 100, '...'), ENT_QUOTES, 'UTF-8') ?></td>
+                                <td><?= htmlspecialchars($r['aula'], ENT_QUOTES, 'UTF-8') ?></td>
+                                <td><?= htmlspecialchars($r['prioridad'], ENT_QUOTES, 'UTF-8') ?></td>
+                                <td>
+                                    <a href="detalle.php?id=<?= (int)$r['id'] ?>" class="btn btn-sm btn-aulafix">Ver detalles</a>
+                                </td>
+
+                                <?php if ($logueado): ?>
+                                    <td class="text-center">
+                                        <a href="editar.php?id=<?= (int)$r['id'] ?>" class="btn btn-sm btn-aulafix">Editar</a>
+                                    </td>
+
+                                    <td class="text-center">
+                                        <!-- CAMBIO: Se agrega el gestor onsubmit que frena temporalmente el envío -->
+                                        <form action="eliminar.php" method="POST" onsubmit="return confirmarEliminacion(this)">
+                                            <input type="hidden" name="id" value="<?= (int)$r['id']?>">
+                                            <button type="submit" class="btn btn-sm btn-aulafix">Eliminar</button>
+                                        </form>
+                                    </td>
+                                <?php endif; ?>
+                            </tr>
+                        <?php endwhile; ?>
+                    </tbody>
                 </table>
             </div>
         </div>
     </main>
     <?php require 'includes/footer.php'?>
+
+    <!-- CAMBIO: Único popup flotante genérico al final del documento -->
+    <div class="modal-overlay" id="modalEliminar">
+        <div id="eliminarForm" class="text-center">
+            <p class="fw-semibold mb-4">¿Estás seguro que quieres eliminar esta incidencia?</p>
+            <div class="d-flex justify-content-center gap-2">
+                <button type="button" class="btn btn-sm btn-secondary" onclick="cerrarPopup()">Cancelar</button>
+                <button type="button" class="btn btn-sm btn-danger" onclick="procederEliminar()">Eliminar definitivamente</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gestión de scripts al final de la página -->
+    <script src="js/app.js"></script>
+    <script src="js/popup.js"></script>
 </body>
 </html>
