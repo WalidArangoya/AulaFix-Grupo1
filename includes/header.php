@@ -11,8 +11,8 @@
     <nav class="navbar site-nav py-2">
         <div class="container d-flex flex-wrap align-items-center gap-3">
 
-            <a class="navbar-brand m-0" href="index.php">
-                <img class="logo" src="img/logo.png" alt="AulaFix">
+            <a class="navbar-brand m-0 logo" href="index.php">
+                <img id="logo" class="logo" alt="AulaFix">
             </a>
 
             <form class="search-form flex-grow-1 order-3 order-md-2" style="max-width: 720px;"
@@ -38,6 +38,10 @@
                     <button class="btn btn-brand" type="submit">Buscar</button>
                 </div>
             </form>
+
+            <button id="themeToggle" class="btn btn-outline-secondary">
+                <i class="bi bi-moon-fill"></i>
+            </button>
 
             <?php if (isset($_SESSION["usuario"])): ?>
                 <div class="d-flex align-items-center gap-2 order-2 order-md-3 ms-auto ms-md-0">

@@ -1,10 +1,10 @@
-<footer class="bg-light border-top mt-5 py-5">
+<footer class="border-top mt-5 py-5">
     <div class="container">
         <div class="row align-items-start">
 
             <!-- Logo -->
             <div class="col-md-4 text-center text-md-start mb-4">
-                <img class=logoFooter src="img/logo.png" alt="Logo">
+                <img id="logo2" class="logoFooter" alt="AulaFix">
             </div>
 
             <!-- Contacto -->

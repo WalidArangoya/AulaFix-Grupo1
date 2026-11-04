@@ -1,23 +1,26 @@
-class Incidencia {
+document.addEventListener("DOMContentLoaded", () => {
 
-    constructor(
-        id,
-        titulo,
-        prioridad,
-        estado
-    ) {
+    const btn = document.getElementById("themeToggle");
+    const imgLogo = document.getElementById("logo");
+    const imgLogo2 = document.getElementById("logo2");
+    imgLogo.src = "img/logo.png";
+    imgLogo2.src = "img/logo.png";
 
-        this.id = id;
-        this.titulo = titulo;
-        this.prioridad = prioridad;
-        this.estado = estado;
+    btn.addEventListener("click", () => {
 
-    }
+        const icono = btn.querySelector("i");
 
-    obtenerResumen() {
+        if (icono.classList.contains("bi-sun-fill")) {
+            imgLogo.src = "img/logo.png";
+            imgLogo2.src = "img/logo.png";
+            icono.classList.remove("bi-sun-fill");
+            icono.classList.add("bi-moon-fill");
+        } else {
+            imgLogo.src = "img/logoClaro.png";
+            imgLogo2.src = "img/logoClaro.png";
+            icono.classList.remove("bi-moon-fill");
+            icono.classList.add("bi-sun-fill");
+        }
 
-        return `${this.titulo} - ${this.estado}`;
-
-    }
-
-}
+    });
+});

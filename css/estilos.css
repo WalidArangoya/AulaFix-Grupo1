@@ -4,8 +4,7 @@
    ========================================================= */
 
 /* ---------- 1. Variables del tema claro ---------- */
-:root,
-[data-bs-theme="light"] {
+:root{
     --af-primary: #ff9800;
     --af-primary-hover: #e68a00;
     --af-primary-rgb: 255, 152, 0;

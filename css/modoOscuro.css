@@ -1,265 +1,155 @@
-/* =========================
-   RESET
-========================= */
+/* =========================================================
+   AulaFix · modoOscuro.css
+   ========================================================= */
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root{
+
+    --af-primary: #ffb347;
+    --af-primary-hover: #ffc266;
+    --af-primary-rgb: 255, 179, 71;
+
+    --af-bg: #081225;
+    --af-surface: #1e2b44;
+    --af-surface-2: #182540;
+
+    --af-text: #E8ECF8;
+    --af-muted: #AAB2C5;
+    --af-border: #384357;
+
+    --af-header: #081225;
+    --af-footer: #081225;
+
+    --af-table-bg: #1e2b44;
+    --af-table-striped: #24324f;
+    --af-table-hover: #2d3953;
+    --af-table-text: #E8ECF8;
+
+    --af-shadow: 0 10px 30px rgba(0,0,0,.4);
 }
 
-body{
-    background-color: #121826;
-    color: #E8ECF8;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* ---------- 2. Base ---------- */
+body {
     min-height: 100vh;
-}
-
-/* =========================
-   HEADER
-========================= */
-
-header{
-    width: 100%;
-    background-color: #1B2333;
-    padding: 20px 40px;
-
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    background-color: var(--af-bg);
+    color: var(--af-text);
 }
 
-.logo{
+main {
+    flex: 1;
+}
+
+textarea {
+    resize: none;
+}
+
+/* ---------- 3. Logos ---------- */
+.logo {
     width: 100px;
 }
 
-.logo img{
-    height: 70px;
+.logoFooter {
+    max-width: 180px;
+    height: auto;
 }
 
-.logo h1{
-    color: #E8ECF8;
-    font-size: 1.5rem;
+/* ---------- 4. Botón principal ---------- */
+.btn-aulafix {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--af-primary);
+    --bs-btn-border-color: var(--af-primary);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--af-primary-hover);
+    --bs-btn-hover-border-color: var(--af-primary-hover);
+    --bs-btn-focus-shadow-rgb: var(--af-primary-rgb);
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--af-primary-hover);
+    --bs-btn-active-border-color: var(--af-primary-hover);
+    font-weight: 600;
 }
 
-/* =========================
-   BÚSQUEDA Y FILTROS
-========================= */
-
-.barra-superior{
-    display: flex;
-    align-items: center;
-    gap: 15px;
+/* Botón secundario (Cancelar) dentro de las tarjetas */
+.card-aulafix .btn-outline-dark {
+    --bs-btn-color: var(--af-text);
+    --bs-btn-border-color: var(--af-border);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--af-table-bg);
+    --bs-btn-hover-border-color: var(--af-table-bg);
+    font-weight: 600;
 }
 
-input,
-select{
-    background-color: #232D42;
-    color: #E8ECF8;
-
-    border: 1px solid #384357;
-    border-radius: 20px;
-
-    padding: 10px 15px;
+/* ---------- 5. Tablas (index y detalle) ---------- */
+.table {
+    --bs-table-bg: var(--af-table-bg);
+    --bs-table-color: var(--af-table-text);
+    --bs-table-striped-bg: var(--af-table-striped);
+    --bs-table-striped-color: var(--af-table-text);
+    --bs-table-hover-bg: var(--af-table-hover);
+    --bs-table-hover-color: var(--af-table-text);
+    --bs-table-border-color: rgba(255, 255, 255, .1);
 }
 
-input::placeholder{
-    color: #AAB2C5;
-}
-
-input:focus,
-select:focus{
-    outline: none;
-    border-color: #4F7CFF;
-}
-
-.btn-buscar{
-    background-color: #4F7CFF;
-    color: white;
-
-    border: none;
-    padding: 10px 20px;
-
-    border-radius: 20px;
-    cursor: pointer;
-
-    transition: .3s;
-}
-
-.btn-buscar:hover{
-    background-color: #628dff;
-}
-
-/* =========================
-   USUARIO
-========================= */
-
-.usuario{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #E8ECF8;
-}
-
-.usuario img{
-    width: 50px;
-    height: 50px;
-
-    border-radius: 50%;
-    padding: 5px;
-
-    background-color: #232D42;
-}
-
-/* =========================
-   CONTENIDO
-========================= */
-
-main{
-    width: 80%;
-    margin: 50px auto;
-}
-
-h2{
-    color: #E8ECF8;
-    margin-bottom: 25px;
-    font-size: 2rem;
-}
-
-/* =========================
-   TABLA DE INCIDENCIAS
-========================= */
-
-table{
-    width: 100%;
-    border-collapse: collapse;
-
-    background-color: #232D42;
+.tabla {
     border-radius: 10px;
-
-    overflow: hidden;
 }
 
-thead{
-    background-color: #FFB347;
+.titulo-seccion {
+    font-weight: 700;
+    color: var(--af-text);
 }
 
-thead th{
-    color: #121826;
-    padding: 15px;
-    text-align: left;
+/* ---------- 6. Tarjetas y formularios ---------- */
+.card-aulafix,
+.formInicioSesion {
+    background-color: var(--af-surface);
+    border: 1px solid var(--af-border);
+    border-top: 5px solid var(--af-primary);
+    border-radius: var(--af-radius);
+    box-shadow: var(--af-shadow);
 }
 
-tbody tr{
-    border-bottom: 1px solid #384357;
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--af-primary);
+    box-shadow: 0 0 0 .25rem rgba(var(--af-primary-rgb), .25);
 }
 
-tbody tr:hover{
-    background-color: #2D3953;
+.editarTitulo {
+    font-weight: 700;
+    color: var(--af-text);
 }
 
-tbody td{
-    padding: 15px;
-    color: #E8ECF8;
+.editarWrapper,
+#mainEditar {
+    min-height: 70vh;
 }
 
-/* =========================
-   BOTONES TABLA
-========================= */
-
-.btn-editar{
-    background-color: #4F7CFF;
-    color: white;
-
-    border: none;
-    border-radius: 20px;
-
-    padding: 8px 15px;
-    cursor: pointer;
-
-    transition: .3s;
-}
-
-.btn-editar:hover{
-    background-color: #628dff;
-}
-
-.btn-eliminar{
-    background-color: #FF6B6B;
-    color: white;
-
-    border: none;
-    border-radius: 20px;
-
-    padding: 8px 15px;
-    cursor: pointer;
-
-    transition: .3s;
-}
-
-.btn-eliminar:hover{
-    background-color: #ff8080;
-}
-
-/* =========================
-   FOOTER
-========================= */
-.logoFooter {
-    max-width: 180px;
-    height: auto;
-}
-footer{
-    background-color: #1B2333;
-    margin-top: 100px;
-    padding: 50px;
-
-    color: #AAB2C5;
-}
-.logoFooter {
-    max-width: 180px;
-    height: auto;
-}
-.footer-contenedor{
+/* ---------- 7. Login ---------- */
+#mainLogin {
     display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 30px;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
 }
 
-footer h3{
-    color: #E8ECF8;
-    margin-bottom: 15px;
+.formInicioSesion {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
 }
 
-footer a{
-    color: #FFB347;
-    text-decoration: none;
+/* ---------- 8. Footer ---------- */
+footer {
+    background: var(--af-footer-bg);
 }
 
-footer a:hover{
-    text-decoration: underline;
+footer h2 {
+    font-size: 2.5rem;
+    letter-spacing: 2px;
 }
 
-.copy{
-    text-align: center;
-    margin-top: 30px;
-    color: #7E8BA3;
-}
-
-/* =========================
-   SCROLLBAR
-========================= */
-
-::-webkit-scrollbar{
-    width: 10px;
-}
-
-::-webkit-scrollbar-track{
-    background: #1B2333;
-}
-
-::-webkit-scrollbar-thumb{
-    background: #4F7CFF;
-    border-radius: 20px;
+footer a:hover {
+    color: var(--af-primary-hover) !important;
 }
