@@ -43,14 +43,7 @@
 }
 
 /* Tarjeta blanca central del popup */
-#eliminarForm {
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
-    width: 100%;
-    max-width: 380px; /* Ancho máximo controlado */
-}
+
 
 
 /* ---------- 2. Base ---------- */
