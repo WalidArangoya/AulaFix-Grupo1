@@ -6,7 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
     imgLogo.src = "img/logo.png";
     imgLogo2.src = "img/logo.png";
 
+
     btn.addEventListener("click", () => {
+
 
         const icono = btn.querySelector("i");
 

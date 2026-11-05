@@ -1,14 +1,14 @@
 <?php
-    session_start();
-    require 'conexion.php';
+session_start();
+require 'conexion.php';
 
 
-    $q = trim($_POST['q'] ?? '');
-    $like = "%{$q}%";
-    $prioridad = trim($_POST['prioridad'] ?? '');
+$q = trim($_POST['q'] ?? '');
+$like = "%{$q}%";
+$prioridad = trim($_POST['prioridad'] ?? '');
 
-    //mostrar todas las incidencias
-    $stmt = $cn->prepare("
+//mostrar todas las incidencias
+$stmt = $cn->prepare("
         SELECT id, titulo, descripcion, aula, prioridad, estado 
         FROM incidencias
         WHERE (?='' OR titulo LIKE ?)
@@ -16,27 +16,45 @@
         ORDER BY id ASC
     ");
 
-    $stmt->bind_param('ssss', $q, $like, $prioridad, $prioridad);
-    $stmt->execute();
-    $res = $stmt->get_result();
+$stmt->bind_param('ssss', $q, $like, $prioridad, $prioridad);
+$stmt->execute();
+$res = $stmt->get_result();
 
-    $logueado = isset($_SESSION['usuario']);
+$logueado = isset($_SESSION['usuario']);
 
+if (!isset($_COOKIE['tema'])) {
+    setcookie(
+        "tema",
+        "light",
+        time() + (86400 * 7),
+        "/"
+    );
+}
+
+$tema = $_COOKIE['tema'];
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/estilos.css">
     <script src="js/app.js" defer></script>
+    <?php
+    if ($tema === 'dark'): ?>
+        <link rel="stylesheet" href="css/modoOscuro.css">
+    <?php else: ?>
+        <link rel="stylesheet" href="css/estilos.css">
+    <?php endif; ?>
+    <span id="tema" value=" <?= $tema ?>"></span>
+
     <title>AulaFix - Grupo 1</title>
 </head>
 
 <body>
-    <?php require 'includes/header.php';?>
+    <?php require 'includes/header.php'; ?>
     <main>
         <div class="container my-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
@@ -68,24 +86,25 @@
                     <tbody>
                         <?php while ($r = $res->fetch_assoc()): ?>
                             <tr>
-                                <td id=<?= (int)$r['id'] ?>"><?= htmlspecialchars($r['titulo'], ENT_QUOTES, 'UTF-8') ?></td>
-                                <td><?= htmlspecialchars(mb_strimwidth($r['descripcion'], 0, 100, '...'), ENT_QUOTES, 'UTF-8') ?></td>
-                                <td><?= htmlspecialchars($r['aula'], ENT_QUOTES, 'UTF-8') ?></td>
-                                <td><?= htmlspecialchars($r['prioridad'], ENT_QUOTES, 'UTF-8') ?></td>
-                                <td>
-                                    <a href="detalle.php?id=<?= (int)$r['id'] ?>" class="btn btn-sm btn-aulafix">Ver detalles</a>
+                                <td id=<?= (int) $r['id'] ?>"><?= htmlspecialchars($r['titulo'], ENT_QUOTES, 'UTF-8') ?></td>
+                            <td><?= htmlspecialchars(mb_strimwidth($r['descripcion'], 0, 100, '...'), ENT_QUOTES, 'UTF-8') ?></td>
+                            <td><?= htmlspecialchars($r['aula'], ENT_QUOTES, 'UTF-8') ?></td>
+                            <td><?= htmlspecialchars($r['prioridad'], ENT_QUOTES, 'UTF-8') ?></td>
+                            <td>
+                                <a href="detalle.php?id=<?= (int) $r['id'] ?>" class="btn btn-sm btn-aulafix">Ver
+                                        detalles</a>
                                 </td>
 
                                 <?php if ($logueado): ?>
 
                                     <td class="text-center">
-                                        <a href="editar.php?id=<?= (int)$r['id'] ?>" class="btn btn-sm btn-aulafix">Editar</a>
+                                        <a href="editar.php?id=<?= (int) $r['id'] ?>" class="btn btn-sm btn-aulafix">Editar</a>
                                     </td>
 
                                     </td>
                                     <td class="text-center">
                                         <form action="eliminar.php" method="POST">
-                                            <input type="hidden" name="id" value="<?= (int)$r['id']?>">
+                                            <input type="hidden" name="id" value="<?= (int) $r['id'] ?>">
                                             <button type="submit" class="btn btn-sm btn-aulafix">Eliminar</button>
                                         </form>
                                     </td>
@@ -97,6 +116,7 @@
             </div>
         </div>
     </main>
-    <?php require 'includes/footer.php'?>
+    <?php require 'includes/footer.php' ?>
 </body>
+
 </html>

@@ -1,10 +1,13 @@
 <?php
-    $qActual = $q ?? '';
-    $prioridadActual = $prioridad ?? '';
+$qActual = $q ?? '';
+$prioridadActual = $prioridad ?? '';
 
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+
+$tema = $_COOKIE['tema'];
 
 ?>
 <header>
@@ -15,19 +18,17 @@
                 <img id="logo" class="logo" alt="AulaFix">
             </a>
 
-            <form class="search-form flex-grow-1 order-3 order-md-2" style="max-width: 720px;"
-                  action="index.php" method="POST" role="search">
-                  
+            <form class="search-form flex-grow-1 order-3 order-md-2" style="max-width: 720px;" action="index.php"
+                method="POST" role="search">
+
                 <div class="input-group">
 
                     <span class="input-group-text bg-transparent border-end-0" style="border-color: var(--af-line);">
                         <i class="bi bi-search text-secondary"></i>
                     </span>
 
-                    <input class="form-control border-start-0" type="search" name="q"
-                           placeholder="Buscar por nombre"
-                           value="<?= htmlspecialchars($qActual, ENT_QUOTES, 'UTF-8') ?>"
-                           aria-label="Buscar incidencias">
+                    <input class="form-control border-start-0" type="search" name="q" placeholder="Buscar por nombre"
+                        value="<?= htmlspecialchars($qActual, ENT_QUOTES, 'UTF-8') ?>" aria-label="Buscar incidencias">
 
                     <select class="form-select" name="prioridad" aria-label="Filtrar por gravedad">
                         <option value="">Gravedad</option>
@@ -39,9 +40,12 @@
                 </div>
             </form>
 
-            <button id="themeToggle" class="btn btn-outline-secondary">
-                <i class="bi bi-moon-fill"></i>
-            </button>
+            <form action="cambioCookie.php" method="post">
+                <button type="submit" id="themeToggle" class="btn btn-outline-secondary">
+
+                    <i class="bi <?= $tema === 'dark' ? 'bi-sun-fill' : 'bi-moon-fill' ?>"></i> </button>
+            </form>
+
 
             <?php if (isset($_SESSION["usuario"])): ?>
                 <div class="d-flex align-items-center gap-2 order-2 order-md-3 ms-auto ms-md-0">
