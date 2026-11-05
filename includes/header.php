@@ -23,7 +23,7 @@ $tema = $_COOKIE['tema'];
 
                 <div class="input-group">
 
-                    <span class="input-group-text bg-white border-end-0">
+                    <span class="input-group-text bg-transparent border-end-0">
                         <i class="bi bi-search text-secondary"></i>
                     </span>
 

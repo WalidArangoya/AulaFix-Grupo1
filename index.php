@@ -84,12 +84,18 @@ $tema = $_COOKIE['tema'];
                     </thead>
                     <tbody>
                         <?php while ($r = $res->fetch_assoc()): ?>
-                            <tr>
-                                <td id=<?= (int) $r['id'] ?>"><?= htmlspecialchars($r['titulo'], ENT_QUOTES, 'UTF-8') ?></td>
-                            <td><?= htmlspecialchars(mb_strimwidth($r['descripcion'], 0, 100, '...'), ENT_QUOTES, 'UTF-8') ?></td>
-                            <td><?= htmlspecialchars($r['aula'], ENT_QUOTES, 'UTF-8') ?></td>
-                            <td><?= htmlspecialchars($r['prioridad'], ENT_QUOTES, 'UTF-8') ?></td>
-                            <td>
+                            <tr data-id="<?= (int) $r['id'] ?>"
+                                data-titulo="<?= htmlspecialchars($r['titulo'], ENT_QUOTES, 'UTF-8') ?>"
+                                data-descripcion="<?= htmlspecialchars($r['descripcion'], ENT_QUOTES, 'UTF-8') ?>"
+                                data-aula="<?= htmlspecialchars($r['aula'], ENT_QUOTES, 'UTF-8') ?>"
+                                data-prioridad="<?= htmlspecialchars($r['prioridad'], ENT_QUOTES, 'UTF-8') ?>"
+                                data-estado="<?= htmlspecialchars($r['estado'], ENT_QUOTES, 'UTF-8') ?>">
+
+                                <td id="<?= (int) $r['id'] ?>"><?= htmlspecialchars($r['titulo'], ENT_QUOTES, 'UTF-8') ?></td>
+                                <td><?= htmlspecialchars(mb_strimwidth($r['descripcion'], 0, 100, '...'), ENT_QUOTES, 'UTF-8') ?></td>
+                                <td><?= htmlspecialchars($r['aula'], ENT_QUOTES, 'UTF-8') ?></td>
+                                <td><?= htmlspecialchars($r['prioridad'], ENT_QUOTES, 'UTF-8') ?></td>
+                                <td>
                                 <a href="detalle.php?id=<?= (int) $r['id'] ?>" class="btn btn-sm btn-aulafix">Ver
                                         detalles</a>
                                 </td>
@@ -99,10 +105,9 @@ $tema = $_COOKIE['tema'];
                                     <td class="text-center">
                                         <a href="editar.php?id=<?= (int) $r['id'] ?>" class="btn btn-sm btn-aulafix">Editar</a>
                                     </td>
-
-                                    </td>
+                                    
                                     <td class="text-center">
-                                        <form action="eliminar.php" method="POST">
+                                        <form action="eliminar.php" method="POST" onsubmit="return confirmarEliminacion(this)">
                                             <input type="hidden" name="id" value="<?= (int) $r['id'] ?>">
                                             <button type="submit" class="btn btn-sm btn-aulafix">Eliminar</button>
                                         </form>
@@ -116,6 +121,16 @@ $tema = $_COOKIE['tema'];
         </div>
     </main>
     <?php require 'includes/footer.php' ?>
-</body>
 
+    <div class="modal-overlay" id="modalEliminar">
+        <div id="eliminarForm" class="text-center">
+            <p class="fw-semibold mb-4">¿Estás seguro que quieres eliminar esta incidencia?</p>
+            <div class="d-flex justify-content-center gap-2">
+                <button type="button" class="btn btn-sm btn-secondary" onclick="cerrarPopup()">Cancelar</button>
+                <button type="button" class="btn btn-sm btn-danger" onclick="procederEliminar()">Eliminar definitivamente</button>
+            </div>
+        </div>
+    </div>
+
+</body>
 </html>

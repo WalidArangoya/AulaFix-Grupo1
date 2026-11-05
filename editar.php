@@ -7,6 +7,7 @@
         die("ID no válido");
     }
     
+    try{
     // 1. CARGAR LOS DATOS ACTUALES
 
     $stmt = $cn->prepare("
@@ -39,6 +40,7 @@
             echo "Todos los campos son obligatorios";
         } else{
 
+        $cn->begin_transaction();
         $stmt = $cn-> prepare("
             UPDATE incidencias 
             SET titulo = ?,
@@ -59,9 +61,10 @@
             $id
         );
 
-        if($stmt->execute()) {
-            if($estadoAnterior != $estado){
-             
+        $stmt->execute();
+
+        if($estadoAnterior != $estado){
+            
             $stmtHistorial = $cn->prepare("
                 INSERT INTO historial_estados
                 (
@@ -72,23 +75,27 @@
                 )
                 VALUES (?, ?, ?, NOW())
                 "); 
-               
+            
                 $stmtHistorial->bind_param(
                 "iss",
                 $id,
                 $estadoAnterior,
                 $estado
-               );
-               
-               $stmtHistorial->execute();     
-            }
-            header("Location: index.php");
-            exit;
-        } else {
-            echo "Error al actualizar";
+            );
+            
+            $stmtHistorial->execute();     
         }
-
+        $cn->commit();
+        header("Location: index.php");
+        exit;
     }
+    }
+}catch (mysqli_sql_exception $e) {
+    if (isset($cn) && $cn->connect_errno === 0) {
+        $cn->rollback();
+    }
+    echo "Error crítico en la base de datos: " . $e->getMessage();
+    exit;
 }
 
 $tema = $_COOKIE['tema'];

@@ -24,7 +24,13 @@
     --af-table-hover: #2d3953;
     --af-table-text: #E8ECF8;
 
+    --af-radius: 18px;
     --af-shadow: 0 10px 30px rgba(0,0,0,.4);
+    
+    --bs-body-color: var(--af-text);
+    --bs-body-bg: var(--af-bg);
+    --bs-border-color: var(--af-border);
+    --bs-heading-color: var(--af-text);
 }
 
 /* ---------- 2. Base ---------- */
@@ -109,6 +115,11 @@ textarea {
     box-shadow: var(--af-shadow);
 }
 
+.form-control::placeholder {
+    color: var(--af-text);
+    opacity: 1;
+}
+
 .form-control:focus,
 .form-select:focus {
     border-color: var(--af-primary);
@@ -140,7 +151,33 @@ textarea {
     padding: 30px;
 }
 
-/* ---------- 8. Footer ---------- */
+/* ---------- 8. Modal Eliminar ---------- */
+.modal-overlay {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 9999; 
+    justify-content: center;
+    align-items: center;
+}
+
+#eliminarForm {
+    background-color: #ffffff;
+    padding: 35px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 450px;
+    width: 90%;
+    position: relative;
+    background-color: var(--af-surface);
+    color: var(--af-text);
+}
+
+/* ---------- 9. Footer ---------- */
 footer {
     background: var(--af-footer);
 }
