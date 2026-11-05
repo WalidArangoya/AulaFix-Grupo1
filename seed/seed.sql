@@ -1,3 +1,5 @@
+CREATE DATABASE IF NOT EXISTS aulafix;
+USE aulafix;
 -- MySQL dump 10.13  Distrib 8.0.43, for Win64 (x86_64)
 --
 -- Host: localhost    Database: aulafix
@@ -112,3 +114,5 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2026-10-20 10:56:26
+
+INSERT INTO usuarios (usuario, password) VALUES ("admin", "admin");

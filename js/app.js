@@ -18,8 +18,11 @@ class Incidencia {
     }
 }
 
-// Crear un objeto por cada incidencia recuperada (solo existe en index.php)
+// Selecciona solo las filas que tengan atributo data-id
 document.querySelectorAll("tr[data-id]").forEach(tr => {
+    
+    // Crea un objeto Incidencia por fila con los datos que PHP dejó en los
+    // atributos data-*. dataset convierte data-titulo en tr.dataset.titulo.
     new Incidencia({
         id: Number(tr.dataset.id),
         titulo: tr.dataset.titulo,
@@ -28,33 +31,8 @@ document.querySelectorAll("tr[data-id]").forEach(tr => {
         prioridad: tr.dataset.prioridad,
         estado: tr.dataset.estado
     });
+
 });
-
-let incidenciaActual = null;
-const btnCrear = document.querySelector("#crearIncidencia");
-const btnConfirmar = document.querySelector("#confirmarIncidencia");
-
-function crear(){
-    incidenciaActual = new Incidencia({
-        id: Incidencia.todos.length,
-        titulo: document.getElementById("titulo").value,
-        prioridad: document.getElementById("prioridad").value,
-        aula: document.getElementById("aula").value,
-        estado: false
-    });
-    incidenciaActual.fechaCreacion = new Date().toLocaleString();
-}
-
-function confirmar(){
-    if(incidenciaActual.estado==false){
-        incidenciaActual.estado=true;
-        incidenciaActual.fechaConfirm= new Date().toLocaleString();
-    }
-}
-
-if (btnCrear) btnCrear.addEventListener("click", crear);
-if (btnConfirmar) btnConfirmar.addEventListener("click", confirmar);
-
 
 //Popup eliminar
 let formularioActivo = null;

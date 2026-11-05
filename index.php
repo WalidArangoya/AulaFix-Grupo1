@@ -1,40 +1,40 @@
 <?php
-session_start();
-require 'conexion.php';
+    session_start();
+    require 'conexion.php';
 
 
-$q = trim($_POST['q'] ?? '');
-$like = "%{$q}%";
-$prioridad = trim($_POST['prioridad'] ?? '');
+    $q = trim($_POST['q'] ?? '');
+    $like = "%{$q}%";
+    $prioridad = trim($_POST['prioridad'] ?? '');
 
-//mostrar todas las incidencias
-$stmt = $cn->prepare("
-        SELECT id, titulo, descripcion, aula, prioridad, estado 
-        FROM incidencias
-        WHERE (?='' OR titulo LIKE ?)
-            AND (? = '' OR prioridad = ?)
-        ORDER BY id ASC
-    ");
+    //mostrar todas las incidencias
+    $stmt = $cn->prepare("
+            SELECT id, titulo, descripcion, aula, prioridad, estado 
+            FROM incidencias
+            WHERE (?='' OR titulo LIKE ?)
+                AND (? = '' OR prioridad = ?)
+            ORDER BY id ASC
+        ");
 
-$stmt->bind_param('ssss', $q, $like, $prioridad, $prioridad);
-$stmt->execute();
-$res = $stmt->get_result();
+    $stmt->bind_param('ssss', $q, $like, $prioridad, $prioridad);
+    $stmt->execute();
+    $res = $stmt->get_result();
 
-$logueado = isset($_SESSION['usuario']);
+    $logueado = isset($_SESSION['usuario']);
 
-if (!isset($_COOKIE['tema'])) {
-    setcookie(
-        "tema",
-        "light",
-        time() + (86400 * 7),
-        "/"
-    );
-}
+    if (!isset($_COOKIE['tema'])) {
+        setcookie(
+            "tema",
+            "light",
+            time() + (86400 * 7),
+            "/"
+        );
+    }
 
-$tema = $_COOKIE['tema'];
+    $tema = $_COOKIE['tema'];
 ?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -42,8 +42,7 @@ $tema = $_COOKIE['tema'];
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <script src="js/app.js" defer></script>
-    <?php
-    if ($tema === 'dark'): ?>
+    <?php if ($tema === 'dark'): ?>
         <link rel="stylesheet" href="css/modoOscuro.css">
     <?php else: ?>
         <link rel="stylesheet" href="css/estilos.css">
@@ -54,6 +53,7 @@ $tema = $_COOKIE['tema'];
 
 <body>
     <?php require 'includes/header.php'; ?>
+
     <main>
         <div class="container my-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
@@ -84,6 +84,7 @@ $tema = $_COOKIE['tema'];
                     </thead>
                     <tbody>
                         <?php while ($r = $res->fetch_assoc()): ?>
+                            <!-- Agregar atributos data-* a cada fila. Así el JS puede leerlos (element.dataset) sin otra petición al servidor-->
                             <tr data-id="<?= (int) $r['id'] ?>"
                                 data-titulo="<?= htmlspecialchars($r['titulo'], ENT_QUOTES, 'UTF-8') ?>"
                                 data-descripcion="<?= htmlspecialchars($r['descripcion'], ENT_QUOTES, 'UTF-8') ?>"
@@ -107,6 +108,9 @@ $tema = $_COOKIE['tema'];
                                     </td>
                                     
                                     <td class="text-center">
+                                        <!-- Formulario para eliminar la incidencia. onsubmit="return confirmarEliminacion(this)":
+                                            se ejecuta la función JS antes de enviar. Si devuelve true, el formulario se envía; 
+                                            si devuelve false, se cancela. "this" es el propio <form>. -->
                                         <form action="eliminar.php" method="POST" onsubmit="return confirmarEliminacion(this)">
                                             <input type="hidden" name="id" value="<?= (int) $r['id'] ?>">
                                             <button type="submit" class="btn btn-sm btn-aulafix">Eliminar</button>
@@ -120,6 +124,7 @@ $tema = $_COOKIE['tema'];
             </div>
         </div>
     </main>
+
     <?php require 'includes/footer.php' ?>
 
     <div class="modal-overlay" id="modalEliminar">
