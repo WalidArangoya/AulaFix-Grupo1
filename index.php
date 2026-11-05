@@ -78,7 +78,6 @@
                                     </td>
 
                                     <td class="text-center">
-                                        <!-- CAMBIO: Se agrega el gestor onsubmit que frena temporalmente el envío -->
                                         <form action="eliminar.php" method="POST" onsubmit="return confirmarEliminacion(this)">
                                             <input type="hidden" name="id" value="<?= (int)$r['id']?>">
                                             <button type="submit" class="btn btn-sm btn-aulafix">Eliminar</button>
@@ -94,7 +93,7 @@
     </main>
     <?php require 'includes/footer.php'?>
 
-    <!-- CAMBIO: Único popup flotante genérico al final del documento -->
+
     <div class="modal-overlay" id="modalEliminar">
         <div id="eliminarForm" class="text-center">
             <p class="fw-semibold mb-4">¿Estás seguro que quieres eliminar esta incidencia?</p>
