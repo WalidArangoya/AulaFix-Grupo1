@@ -48,7 +48,6 @@ $tema = $_COOKIE['tema'];
     <?php else: ?>
         <link rel="stylesheet" href="css/estilos.css">
     <?php endif; ?>
-    <span id="tema" value=" <?= $tema ?>"></span>
 
     <title>AulaFix - Grupo 1</title>
 </head>

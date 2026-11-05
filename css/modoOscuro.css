@@ -142,7 +142,7 @@ textarea {
 
 /* ---------- 8. Footer ---------- */
 footer {
-    background: var(--af-footer-bg);
+    background: var(--af-footer);
 }
 
 footer h2 {
@@ -152,4 +152,8 @@ footer h2 {
 
 footer a:hover {
     color: var(--af-primary-hover) !important;
+}
+
+.txt {
+    color: var(--af-text);
 }

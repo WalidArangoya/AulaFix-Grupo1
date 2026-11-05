@@ -17,6 +17,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
 }
 
-header('Location:index.php');
+$redirect_url = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'index.php';
+
+header('Location: ' . $redirect_url);
+exit;
 
 ?>

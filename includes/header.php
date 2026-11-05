@@ -15,7 +15,7 @@ $tema = $_COOKIE['tema'];
         <div class="container d-flex flex-wrap align-items-center gap-3">
 
             <a class="navbar-brand m-0 logo" href="index.php">
-                <img id="logo" class="logo" alt="AulaFix">
+                <img class="logo" src="<?= $tema === 'dark' ? 'img/logoClaro.png' : 'img/logo.png' ?>" alt="AulaFix">
             </a>
 
             <form class="search-form flex-grow-1 order-3 order-md-2" style="max-width: 720px;" action="index.php"
@@ -23,7 +23,7 @@ $tema = $_COOKIE['tema'];
 
                 <div class="input-group">
 
-                    <span class="input-group-text bg-transparent border-end-0" style="border-color: var(--af-line);">
+                    <span class="input-group-text bg-white border-end-0">
                         <i class="bi bi-search text-secondary"></i>
                     </span>
 
@@ -36,14 +36,14 @@ $tema = $_COOKIE['tema'];
                             <option value="<?= $p ?>" <?= $prioridadActual === $p ? 'selected' : '' ?>><?= $p ?></option>
                         <?php endforeach; ?>
                     </select>
-                    <button class="btn btn-brand" type="submit">Buscar</button>
+                    <button class="btn btn-brand txt" type="submit">Buscar</button>
                 </div>
             </form>
 
             <form action="cambioCookie.php" method="post">
                 <button type="submit" id="themeToggle" class="btn btn-outline-secondary">
-
-                    <i class="bi <?= $tema === 'dark' ? 'bi-sun-fill' : 'bi-moon-fill' ?>"></i> </button>
+                    <i class="bi <?= $tema === 'dark' ? 'bi-sun-fill' : 'bi-moon-fill' ?>"></i>
+                </button>
             </form>
 
 
@@ -52,12 +52,12 @@ $tema = $_COOKIE['tema'];
                     <span>
                         <i class="bi bi-person-circle me-1"></i><?= htmlspecialchars($_SESSION["usuario"]) ?>
                     </span>
-                    <a class="btn btn-outline-brand" href="logout.php">
+                    <a class="btn btn-outline-brand txt" href="logout.php">
                         <i class="bi bi-box-arrow-right me-1"></i>Cerrar sesión
                     </a>
                 </div>
             <?php else: ?>
-                <a class="btn btn-outline-brand order-2 order-md-3 ms-auto ms-md-0" href="login.php">
+                <a class="btn btn-outline-brand order-2 order-md-3 ms-auto ms-md-0 txt" href="login.php">
                     <i class="bi bi-person-circle me-1"></i>Iniciar sesión
                 </a>
             <?php endif; ?>
